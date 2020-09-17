@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource.db1",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.zgjt.yqsl.config.DatabaseConfig",
+      "sourceMethod": "db1()"
+    },
+    {
+      "name": "spring.datasource.db2",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.zgjt.yqsl.config.DatabaseConfig",
+      "sourceMethod": "db2()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
