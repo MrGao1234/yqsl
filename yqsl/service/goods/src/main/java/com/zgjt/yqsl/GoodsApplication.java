@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@MapperScan("com.zgjt.yqsl.mapper")
+@MapperScan({"com.zgjt.yqsl.mapper","com.zgjt.yqsl.*.mapper"})
 public class GoodsApplication {
     public static void main(String[] args){
         SpringApplication.run(GoodsApplication.class,args);

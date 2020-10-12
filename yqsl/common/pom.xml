@@ -14,7 +14,6 @@
     <modules>
         <module>common_entity</module>
         <module>common_database</module>
-        <module>common_response</module>
-        <module>common_response</module>
+        <module>common_base</module>
     </modules>
 </project>
