@@ -1,9 +1,0 @@
-server:
-  port: 8001
-spring:
-  profiles:
-    active: database,base
-# 打印sql信息
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,6 +1,0 @@
-spring:
-  redis:
-    host: 148.70.100.4
-    port: 6379
-swagger:
-  enabled: true
