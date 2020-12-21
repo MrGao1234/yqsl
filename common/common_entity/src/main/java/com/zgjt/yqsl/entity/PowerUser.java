@@ -31,8 +31,8 @@ public class PowerUser implements Serializable {
     private Integer isDeleted;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date update_time;
+    private Date updateTime;
 
     @TableField(fill = FieldFill.INSERT)
-    private Date create_time;
+    private Date createTime;
 }

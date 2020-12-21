@@ -2,11 +2,14 @@ spring:
   datasource:
     db1:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://148.70.100.4:3306/yqsl?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
+      url: jdbc:mysql://localhost:3306/yqsl?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: ENC(iN9tabXFn16whpGdxsdINYOFuuTCdu5XpvPH+x9uj44jPxinm0rluVmWTxnVDV0o)
+      password: ENC(q+ps7gnI2vv53jIXUqlSd7HHgGR4vkPTTlrYyCw9mEfdARRxWeWeceI2qxP2rQrm)
     db2:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://148.70.100.4:3307/yqsl?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
+      url: jdbc:mysql://localhost:3306/yqsl?useUnicode=true&characterEncoding=utf-8&useSSL=false$serverTimezone=Asia/Shanghai
+      username: ENC(iN9tabXFn16whpGdxsdINYOFuuTCdu5XpvPH+x9uj44jPxinm0rluVmWTxnVDV0o)
+      password: ENC(q+ps7gnI2vv53jIXUqlSd7HHgGR4vkPTTlrYyCw9mEfdARRxWeWeceI2qxP2rQrm)
+jasypt:
+  encryptor:
+    password: yqsl

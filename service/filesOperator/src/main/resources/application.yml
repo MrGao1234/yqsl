@@ -1,5 +1,7 @@
 server:
-  port: 8002
+  port: 10081
+  servlet:
+    context-path: /files
 spring:
   profiles:
     active: base

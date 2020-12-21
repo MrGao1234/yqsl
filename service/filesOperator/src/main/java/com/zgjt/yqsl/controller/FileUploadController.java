@@ -1,7 +1,10 @@
 package com.zgjt.yqsl.controller;
 
+import com.zgjt.yqsl.config.ContentConfig;
 import com.zgjt.yqsl.execption.MyExecption;
 import com.zgjt.yqsl.response.ResponseApi;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +19,12 @@ import java.util.List;
 @RequestMapping("/fileOperate")
 public class FileUploadController {
 
+    @Autowired
+    private ContentConfig contentConfig;
+
     @PostMapping("/fileUpload")
     public ResponseApi fileUpload(MultipartFile file) {
-        if (file.isEmpty()) {
+        if (file == null || file.isEmpty()) {
             throw new MyExecption(20001, "上传文件为空！");
         }
 
@@ -48,7 +54,7 @@ public class FileUploadController {
             throw new MyExecption(20001,"上传文件失败");
         }
 
-        return ResponseApi.sucess();
+        return ResponseApi.sucess().data("imageUrl", contentConfig.getContentPath() + '/' + fileName);
     }
 
     private String getFileName(String fileName) {

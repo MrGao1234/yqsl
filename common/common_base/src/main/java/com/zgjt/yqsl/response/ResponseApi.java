@@ -44,12 +44,17 @@ public class ResponseApi {
     }
 
     public ResponseApi data(String key, Object value){
-        this.data.put(key, value);
+        this.getData().put(key, value);
         return this;
     }
 
     public ResponseApi data(Map<String, Object> map){
         this.setData(map);
+        return this;
+    }
+
+    public ResponseApi put(Object o){
+        this.getData().put("data",o);
         return this;
     }
 

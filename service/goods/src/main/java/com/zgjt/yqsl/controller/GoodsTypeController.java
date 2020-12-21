@@ -27,7 +27,7 @@ public class GoodsTypeController {
     private GoodsTypeService GoodsTypeService;
 
     @PostMapping("addGoodsType")
-    public ResponseApi addGoodsMsg(GoodsType g){
+    public ResponseApi addGoodsType(GoodsType g){
         if( GoodsTypeService.save(g) ){
             return ResponseApi.sucess();
         }else{
@@ -36,7 +36,7 @@ public class GoodsTypeController {
     }
 
     @PostMapping("delGoodsType")
-    public ResponseApi delGoodsMsg(int id){
+    public ResponseApi delGoodsType(int id){
         if(GoodsTypeService.removeById(id)){
             return ResponseApi.sucess();
         }else{
@@ -45,7 +45,7 @@ public class GoodsTypeController {
     }
 
     @PostMapping("updGoodsType")
-    public ResponseApi updGoodsMsg(GoodsType g){
+    public ResponseApi updGoodsType(GoodsType g){
         if(GoodsTypeService.updateById(g)){
             return ResponseApi.sucess();
         }else{
@@ -54,8 +54,8 @@ public class GoodsTypeController {
     }
 
     @GetMapping("selGoodsType")
-    public ResponseApi selGoodsMsg(){
-        return ResponseApi.sucess().data(GoodsTypeService.getMap(null));
+    public ResponseApi selGoodsType(){
+        return ResponseApi.sucess().data("typeList",GoodsTypeService.list(null));
     }
 
 }
