@@ -1,6 +1,7 @@
 package com.zgjt.yqsl.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Data
 @TableName("power_user")
+@JsonInclude(value= JsonInclude.Include.NON_NULL)
 public class PowerUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,17 +17,29 @@ public class PowerUser implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String userName;
+    private String name;
 
     private String account;
+
+    private int sex;
+
+    private Date birthdayDate;
 
     private String userPwd;
 
     private String avatar;
 
+    private String status;
+
+    private String idCard;
+
+    private int duty;
+
+    private String shopId;
+
     private String telephone;
 
-    private Integer credit;
+    private PowerShop powerShop;
 
     @TableLogic
     private Integer isDeleted;

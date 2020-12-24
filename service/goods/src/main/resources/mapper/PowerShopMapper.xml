@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgjt.yqsl.mapper.PowerShopMapper">
+    <resultMap id="powerShopList" type="com.zgjt.yqsl.entity.PowerShop">
+        <result column="id" property="id" ></result>
+        <result column="name" property="name" ></result>
+        <result column="address" property="address" ></result>
+        <result column="register_time" property="registerTime" ></result>
+        <association property="director" column="id" select="findDirector"/>
+        <collection property="clerkList" column="id" select="findClerkList"/>
+        <collection property="baseImgList" column="id" select="findImgList"/>
+    </resultMap>
+
+    <select id="findPowerShop" resultMap="powerShopList">
+        SELECT * FROM power_shop
+        WHERE is_deleted = 0
+        <if test="name != null and name != ''">
+            AND name like "%"#{name}"%"
+        </if>
+    </select>
+
+    <select id="findDirector" resultType="com.zgjt.yqsl.entity.PowerUser">
+        SELECT *
+          FROM power_user
+          WHERE shop_id = #{id}
+          AND duty = 2
+    </select>
+
+    <select id="findClerkList" resultType="com.zgjt.yqsl.entity.PowerUser">
+        SELECT *
+          FROM power_user
+          WHERE shop_id = #{id}
+          AND duty = 3
+    </select>
+
+    <select id="findImgList" resultType="java.lang.String">
+        select avartal from base_img where table_name = 'power_shop' and table_row_id = #{id}
+    </select>
+</mapper>

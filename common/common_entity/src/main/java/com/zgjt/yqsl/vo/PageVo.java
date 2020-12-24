@@ -9,4 +9,8 @@ public class PageVo {
     private int pageSize;
     private int brandId;
     private int typeId;
+
+    private String sex;
+    private String duty;
+    private String status;
 }
