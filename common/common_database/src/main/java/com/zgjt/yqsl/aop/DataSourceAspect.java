@@ -17,7 +17,6 @@ import java.lang.reflect.Method;
 public class DataSourceAspect {
     @Pointcut("@annotation(com.zgjt.yqsl.annotation.DataSource)")
     public void pointCut() {
-
     }
 
     @Before("pointCut()")

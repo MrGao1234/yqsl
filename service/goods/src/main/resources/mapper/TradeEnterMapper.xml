@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgjt.yqsl.mapper.TradeEnterMapper">
+
+    <resultMap id="tradeEnterMap" type="com.zgjt.yqsl.entity.TradeEnter">
+        <result property="id" column="id"></result>
+        <result property="tradeNo" column="trade_no"></result>
+        <result property="tradeTime" column="trade_time"></result>
+        <result property="tradeGetTime" column="trade_get_time"></result>
+        <result property="status" column="status"></result>
+        <result property="userId" column="user_id"></result>
+        <association property="powerUser" column="user_id" select="com.zgjt.yqsl.mapper.PowerUserMapper.selectById"/>
+        <collection property="tradeDetailsList" column="trade_no" select="com.zgjt.yqsl.mapper.TradeDetailsMapper.findDetailsByTradeNo"/>
+
+    </resultMap>
+
+    <select id="findTradeEnterList" resultMap="tradeEnterMap">
+        SELECT
+            id,
+            user_id,
+            trade_no,
+            trade_time,
+            trade_get_time,
+            shop_id,
+            status
+        FROM
+            trade_enter
+        WHERE 1 = 1
+        <if test="tradeEnter.userId != null and tradeEnter.userId != 0">
+            AND user_id = #{tradeEnter.userId}
+        </if>
+        <if test="tradeEnter.shopId != null and tradeEnter.shopId != ''">
+            AND shop_id = #{tradeEnter.shopId}
+        </if>
+        <if test="tradeEnter.tradeNo != null and tradeEnter.tradeNo != ''">
+            AND trade_no = #{tradeEnter.tradeNo}
+        </if>
+        <if test="tradeEnter.status != null and tradeEnter.status != ''">
+            AND status = #{tradeEnter.status}
+        </if>
+        ORDER BY
+            trade_time DESC
+    </select>
+
+
+</mapper>

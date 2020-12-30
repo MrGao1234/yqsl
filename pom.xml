@@ -32,6 +32,8 @@
         <mysql-connector-java.version>8.0.19</mysql-connector-java.version>
         <mybatis-plus-boot-starter.version>3.0.5</mybatis-plus-boot-starter.version>
         <jasypt-spring-boot-starter.version>3.0.2</jasypt-spring-boot-starter.version>
+        <aliyun-java-sdk-core>4.5.1</aliyun-java-sdk-core>
+        <aliyun-java-sdk-dysmsapi>1.1.0</aliyun-java-sdk-dysmsapi>
     </properties>
 
     <dependencies>

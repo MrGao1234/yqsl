@@ -1,4 +1,4 @@
-package com.zgjt.yqsl.controller;
+package com.zgjt.yqsl.controller.goods;
 
 
 import com.zgjt.yqsl.entity.GoodsBlock;

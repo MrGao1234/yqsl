@@ -1,10 +1,7 @@
-package com.zgjt.yqsl.controller;
+package com.zgjt.yqsl.controller.power;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.zgjt.yqsl.entity.BaseImg;
 import com.zgjt.yqsl.entity.PowerShop;
-import com.zgjt.yqsl.entity.PowerUser;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.BaseImgService;
 import com.zgjt.yqsl.service.PowerShopService;

@@ -1,6 +1,6 @@
 spring:
   redis:
-    host: 148.70.100.4
+    host: 127.0.0.1
     port: 6379
 swagger:
   enabled: true

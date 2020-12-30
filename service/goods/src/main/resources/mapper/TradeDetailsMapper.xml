@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgjt.yqsl.mapper.TradeDetailsMapper">
+
+    <resultMap id="tradeDetailsMap" type="com.zgjt.yqsl.entity.TradeDetails">
+        <result column="id" property="id"></result>
+        <result column="tradeNo" property="trade_no"></result>
+        <result column="num" property="num"></result>
+        <result column="status" property="status"></result>
+        <collection property="goodsMsg" column="goods_id" select="com.zgjt.yqsl.mapper.GoodsMsgMapper.selectById"></collection>
+    </resultMap>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into trade_details(trade_no,goods_id,num,type) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.tradeNo},#{item.goodsId},#{item.num},#{item.status})
+        </foreach>
+    </insert>
+
+    <select id="findDetailsByTradeNo" resultMap="tradeDetailsMap">
+        select * from trade_details where trade_no = #{trade_no}
+    </select>
+</mapper>

@@ -1,4 +1,4 @@
-package com.zgjt.yqsl.controller;
+package com.zgjt.yqsl.controller.power;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zgjt.yqsl.entity.PowerUser;
@@ -7,6 +7,7 @@ import com.zgjt.yqsl.service.PowerUserService;
 import com.zgjt.yqsl.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -40,12 +41,19 @@ public class PowerUserController {
         return ResponseApi.sucess().put(powerUserService.findStaffList(pageVo));
     }
 
-    //添加员工
+    //添加员工(捎带着登录)
     @PostMapping("/addStaff")
     public ResponseApi addStaff(@RequestBody PowerUser powerUser){
 
-        powerUser.setAccount(powerUserService.produceAccount(powerUser));
-        powerUser.setUserPwd(powerUser.getAccount());
+        if(powerUser.getDuty() == 2 || powerUser.getDuty() == 3){
+
+            //账号系统生成
+            powerUser.setAccount(powerUserService.produceAccount(powerUser));
+            powerUser.setUserPwd(DigestUtils.md5DigestAsHex( powerUser.getAccount().getBytes() ));
+        }else{
+            //账号自己起，不能纯数字
+            powerUser.setUserPwd(DigestUtils.md5DigestAsHex( powerUser.getUserPwd().getBytes() ));
+        }
         powerUser.setStatus("0");
         powerUser.setShopId("1");
 
@@ -66,4 +74,7 @@ public class PowerUserController {
         powerUserService.updateById(powerUser);
         return ResponseApi.sucess();
     }
+
+
+
 }

@@ -17,4 +17,21 @@
         <module>common_base</module>
         <module>common_util</module>
     </modules>
+
+    <dependencies>
+        <!--数据库加密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt-spring-boot-starter.version}</version>
+        </dependency>
+
+        <!-- springboot-aop包,AOP切面注解,Aspectd等相关注解 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+
+    </dependencies>
 </project>

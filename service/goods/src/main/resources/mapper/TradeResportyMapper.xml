@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgjt.yqsl.mapper.TradeResportyMapper">
+
+  <insert id="insertBatch" parameterType="java.util.List">
+      insert into trade_resporty(shop_id,goods_id,product_date,num,trade_no) values 
+      <foreach collection="list" item="item" separator=",">
+          (#{shopId},#{item.goodsId},#{item.productDate},#{item.num},#{item.tradeNo})
+      </foreach>
+  </insert>
+
+    <select id="gapTradeEnter" resultType="java.util.Map">
+        SELECT
+            d.trade_no dTradeNo,
+            r.goods_id rGoodsId,
+            d.num dNum,
+            r.num rNum
+        FROM
+            trade_details d,
+            trade_resporty r
+        WHERE
+            d.trade_no = r.trade_no
+            and d.goods_id = r.goods_id
+            AND d.type = 0
+            AND d.trade_no = #{tradeNo}
+    </select>
+
+</mapper>

@@ -39,6 +39,7 @@ public class PowerUser implements Serializable {
 
     private String telephone;
 
+    @TableField(exist = false)
     private PowerShop powerShop;
 
     @TableLogic

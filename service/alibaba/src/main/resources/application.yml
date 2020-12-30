@@ -1,0 +1,13 @@
+server:
+  port: 10083
+  servlet:
+    context-path: /alibaba
+spring:
+  profiles:
+    active: base
+sms:
+  accessKeyId: ENC(vx93YUB+2dxYzKAj1F4xJN7s2ESrn/N4ZbpQ0qjDknn9geweItBK4i1JZkAZiE235nEubM+WLGsZhIwpBULigg==)
+  accessKeySecret: ENC(4Jf54OTywiFo/jex/kimK6VkrWtFQfYw8GXiXQMH8+mhVg5bfRUGy/fdy89SSczmeBjY+lJUcADl0Wlih3iY1w==)
+jasypt:
+  encryptor:
+    password: yqsl

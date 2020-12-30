@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseApi error(Exception e){
-        e.printStackTrace();
+        log.error("堆栈信息: {}",e);
         return ResponseApi.error().message("全局异常。。");
     }
 
@@ -21,8 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MyExecption.class)
     @ResponseBody
     public ResponseApi error(MyExecption e){
-        //log.error(ExceptionUtils.getExceptionStackTrace(e));
-        e.printStackTrace();
+        log.error("堆栈信息: {}",e);
         return ResponseApi.error().message(e.getMsg()).code(e.getCode());
     }
 

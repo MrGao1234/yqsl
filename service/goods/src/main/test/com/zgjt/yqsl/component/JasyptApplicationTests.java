@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.DigestUtils;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GoodsApplication.class)
@@ -17,7 +18,17 @@ public class JasyptApplicationTests {
     @Test
     public void testPassword(){
         //加密
-        System.out.println(stringEncryptor.encrypt("root"));
-        System.out.println(stringEncryptor.encrypt("1234"));
+        System.out.println(stringEncryptor.encrypt("LTAIxWRuPa823WZ9"));
+        System.out.println(stringEncryptor.encrypt("DQXmA9Yl7pZSF8ij8VVcnq1a4drbRI"));
+    }
+
+    @Test
+    public void md5Test(){
+        System.out.println(DigestUtils.md5DigestAsHex("y_001".getBytes() ));
+    }
+
+    @Test
+    public void codeTest(){
+        System.out.println((int)((Math.random()*9+1)*100000));
     }
 }

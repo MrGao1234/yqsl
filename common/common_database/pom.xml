@@ -12,11 +12,6 @@
     <artifactId>common_database</artifactId>
 
     <dependencies>
-        <!-- springboot-aop包,AOP切面注解,Aspectd等相关注解 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
         <dependency>
@@ -35,13 +30,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus-core</artifactId>-->
+            <!--<version>3.2.0</version>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
 
-        <!--数据库加密-->
-        <dependency>
-            <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>jasypt-spring-boot-starter</artifactId>
-            <version>${jasypt-spring-boot-starter.version}</version>
-        </dependency>
+
     </dependencies>
 
 </project>
