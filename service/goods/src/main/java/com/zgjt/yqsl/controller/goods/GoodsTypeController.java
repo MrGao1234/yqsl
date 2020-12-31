@@ -1,6 +1,7 @@
 package com.zgjt.yqsl.controller.goods;
 
 
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.GoodsType;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.GoodsTypeService;
@@ -26,6 +27,7 @@ public class GoodsTypeController {
     @Autowired
     private GoodsTypeService GoodsTypeService;
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("addGoodsType")
     public ResponseApi addGoodsType(GoodsType g){
         if( GoodsTypeService.save(g) ){
@@ -35,6 +37,7 @@ public class GoodsTypeController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("delGoodsType")
     public ResponseApi delGoodsType(int id){
         if(GoodsTypeService.removeById(id)){
@@ -44,6 +47,7 @@ public class GoodsTypeController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("updGoodsType")
     public ResponseApi updGoodsType(GoodsType g){
         if(GoodsTypeService.updateById(g)){

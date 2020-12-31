@@ -1,14 +1,20 @@
 package com.zgjt.yqsl.execption;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Slf4j
 public class MyExecption extends RuntimeException{
 
     private Integer code;
     private String msg;
+
+    public MyExecption(){}
+
+    public MyExecption(Integer code,String msg){
+        log.error(msg);
+        this.code = code;
+        this.msg = msg;
+    }
 }

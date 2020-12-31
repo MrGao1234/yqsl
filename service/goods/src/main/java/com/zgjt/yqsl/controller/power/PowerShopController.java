@@ -1,5 +1,6 @@
 package com.zgjt.yqsl.controller.power;
 
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.BaseImg;
 import com.zgjt.yqsl.entity.PowerShop;
 import com.zgjt.yqsl.response.ResponseApi;
@@ -28,6 +29,7 @@ public class PowerShopController {
     private BaseImgService baseImgService;
 
     //店铺列表
+    @AuthorityAnnotation(value = {1})
     @GetMapping("/shopList")
     public ResponseApi findShopList(String name){
         List<PowerShop> list = powerShopService.findPowerShopList(name);
@@ -35,6 +37,7 @@ public class PowerShopController {
     }
 
     //注册店铺
+    @AuthorityAnnotation(value = {1})
     @PostMapping("registerShop")
     @Transactional
     public ResponseApi registerShop(@RequestBody PowerShop powerShop){
@@ -61,6 +64,7 @@ public class PowerShopController {
     }
 
     //注销店铺
+    @AuthorityAnnotation(value = {1})
     @PostMapping("cancalShop")
     @Transactional
     public ResponseApi cancalShop(String id,int userId){

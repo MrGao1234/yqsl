@@ -22,6 +22,7 @@ public class Config extends WebMvcConfigurationSupport {
                 .addResourceLocations("file:" + FileUploadController.getUploadPath() + "//");
     }
 
+    //跨域
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

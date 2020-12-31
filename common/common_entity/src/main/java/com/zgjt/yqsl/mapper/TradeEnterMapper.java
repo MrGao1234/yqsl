@@ -10,5 +10,5 @@ import java.util.Map;
 
 public interface TradeEnterMapper extends BaseMapper<TradeEnter> {
 
-    List<TradeEnter> findTradeEnterList(@Param("tradeEnter") Map<String,Object> tradeEnter, IPage page);
+    List<TradeEnter> findTradeEnterList(@Param("tradeEnter") Map<String, Object> tradeEnter, IPage page);
 }

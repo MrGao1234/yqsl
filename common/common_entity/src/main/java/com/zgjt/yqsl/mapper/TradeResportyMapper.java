@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface TradeResportyMapper extends BaseMapper<TradeResporty> {
 
-    int insertBatch(String shopId,List<TradeResporty> list);
+    int insertBatch(String shopId, List<TradeResporty> list);
 
     List<Map<String,Object>> gapTradeEnter(String tradeNo);
 

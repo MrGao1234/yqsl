@@ -2,6 +2,7 @@ package com.zgjt.yqsl.controller.goods;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.BaseUnit;
 import com.zgjt.yqsl.entity.GoodsMsg;
 import com.zgjt.yqsl.response.ResponseApi;
@@ -21,6 +22,7 @@ public class GoodsMsgController {
     @Autowired
     private BaseUnitService baseUnitService;
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("addGoodsMsg")
     public ResponseApi addGoodsMsg(@RequestBody GoodsMsg goodsMsg){
         if( goodsMsgService.save(goodsMsg) ){
@@ -30,6 +32,7 @@ public class GoodsMsgController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("delGoodsMsg")
     public ResponseApi delGoodsMsg(int id){
         if(goodsMsgService.removeById(id)){
@@ -39,6 +42,7 @@ public class GoodsMsgController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("updGoodsMsg")
     public ResponseApi updGoodsMsg(@RequestBody GoodsMsg g){
         if(goodsMsgService.updateById(g)){

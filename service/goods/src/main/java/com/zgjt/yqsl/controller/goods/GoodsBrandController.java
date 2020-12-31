@@ -3,6 +3,7 @@ package com.zgjt.yqsl.controller.goods;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.GoodsBrand;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.GoodsBrandService;
@@ -17,6 +18,7 @@ public class GoodsBrandController {
     @Autowired
     private GoodsBrandService goodsBrandService;
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("/addBrand")
     public ResponseApi addGoods(@RequestBody GoodsBrand g){
         if(goodsBrandService.save(g)){
@@ -26,6 +28,7 @@ public class GoodsBrandController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("/delBrand")
     public ResponseApi delGoods(int id){
         if(goodsBrandService.removeById(id)){
@@ -35,6 +38,7 @@ public class GoodsBrandController {
         }
     }
 
+    @AuthorityAnnotation(value = {1})
     @PostMapping("/updBrand")
     public ResponseApi updGoods(@RequestBody GoodsBrand g){
         if(goodsBrandService.updateById(g)){
@@ -43,8 +47,6 @@ public class GoodsBrandController {
             return ResponseApi.error();
         }
     }
-
-
 
     @PostMapping("/selBrands")
     public ResponseApi selGoods(@RequestBody PageVo pageVo){

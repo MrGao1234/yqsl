@@ -1,9 +1,7 @@
 package com.zgjt.yqsl.mapper;
 
-import com.zgjt.yqsl.entity.GoodsType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
-import java.util.List;
+import com.zgjt.yqsl.entity.GoodsBlock;
 
 /**
  * <p>
@@ -13,6 +11,6 @@ import java.util.List;
  * @author testjava
  * @since 2020-10-12
  */
-public interface GoodsTypeMapper extends BaseMapper<GoodsType> {
+public interface GoodsBlockMapper extends BaseMapper<GoodsBlock> {
 
 }

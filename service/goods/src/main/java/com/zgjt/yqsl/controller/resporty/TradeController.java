@@ -1,6 +1,7 @@
 package com.zgjt.yqsl.controller.resporty;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.TradeEnter;
 import com.zgjt.yqsl.entity.TradeResporty;
 import com.zgjt.yqsl.response.ResponseApi;
@@ -20,6 +21,7 @@ public class TradeController {
     @Autowired
     private TradeRecordService tradeRecordService;
 
+    @AuthorityAnnotation(value = {2})
     @PostMapping("/saveTrade")
     public ResponseApi createTrade( @RequestBody Map<String,Integer> tradeMap ){
        tradeRecordService.createEnterTrade(tradeMap);

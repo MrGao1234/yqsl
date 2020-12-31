@@ -1,6 +1,7 @@
 package com.zgjt.yqsl.controller.power;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.PowerUser;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.PowerUserService;
@@ -18,6 +19,7 @@ public class PowerUserController {
     private PowerUserService powerUserService;
 
     //店长列表
+    @AuthorityAnnotation(value = {1})
     @GetMapping("directorList")
     public ResponseApi findDirectorList(){
         QueryWrapper<PowerUser> wrapper = new QueryWrapper<>();
@@ -27,6 +29,7 @@ public class PowerUserController {
     }
 
     //更换店长
+    @AuthorityAnnotation(value = {1})
     @PostMapping("updateDirector")
     @Transactional
     public ResponseApi updateDirector(String shopId,int oldUserId,int newUserId){
@@ -36,12 +39,14 @@ public class PowerUserController {
     }
 
     //查询店长和员工
+    @AuthorityAnnotation(value = {1,2})
     @PostMapping("/staffList")
     public ResponseApi findStaffList(@RequestBody PageVo pageVo){
         return ResponseApi.sucess().put(powerUserService.findStaffList(pageVo));
     }
 
     //添加员工(捎带着登录)
+    @AuthorityAnnotation(value = {2})
     @PostMapping("/addStaff")
     public ResponseApi addStaff(@RequestBody PowerUser powerUser){
 
@@ -62,6 +67,7 @@ public class PowerUserController {
     }
 
     //删除员工
+    @AuthorityAnnotation(value = {2})
     @PostMapping("removeStaff")
     public ResponseApi removeStaff(int id){
         powerUserService.removeById(id);
@@ -69,6 +75,7 @@ public class PowerUserController {
     }
 
     //更新员工
+    @AuthorityAnnotation(value = {2})
     @PostMapping("/updateStaff")
     public ResponseApi updateStaff(@RequestBody PowerUser powerUser){
         powerUserService.updateById(powerUser);
