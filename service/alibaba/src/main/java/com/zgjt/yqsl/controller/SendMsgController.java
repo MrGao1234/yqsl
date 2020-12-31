@@ -43,7 +43,7 @@ public class SendMsgController {
     /*短信验证码*/
     @PostMapping("/codeSms")
     public ResponseApi sendCodeSms(@RequestParam(value = "phone") String phone){
-
+        System.out.println(phone);
         String code = VerifyCodeUtils.getSixCode();
         try {
             if(SmsUtils.sendMessage(phone,code,accessKeyId,accessKeySecret)){

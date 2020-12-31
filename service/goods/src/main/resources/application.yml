@@ -5,8 +5,25 @@ server:
 spring:
   profiles:
     active: database,base
+  application:
+    name: nacos-goods
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 # 打印sql信息
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml
+# 熔断器
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000

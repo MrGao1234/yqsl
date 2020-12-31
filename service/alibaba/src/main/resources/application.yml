@@ -5,9 +5,16 @@ server:
 spring:
   profiles:
     active: base
+  application:
+    name: nacos-alibaba
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 sms:
   accessKeyId: ENC(vx93YUB+2dxYzKAj1F4xJN7s2ESrn/N4ZbpQ0qjDknn9geweItBK4i1JZkAZiE235nEubM+WLGsZhIwpBULigg==)
   accessKeySecret: ENC(4Jf54OTywiFo/jex/kimK6VkrWtFQfYw8GXiXQMH8+mhVg5bfRUGy/fdy89SSczmeBjY+lJUcADl0Wlih3iY1w==)
 jasypt:
   encryptor:
     password: yqsl
+
