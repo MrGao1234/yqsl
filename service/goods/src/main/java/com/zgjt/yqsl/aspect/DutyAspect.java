@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class DutyAspect {
 
     @Autowired
-    private CurrentUserComponent currentUserComponent;
+    private CurrentUserComponent<PowerUser> currentUserComponent;
 
     @Pointcut("@annotation(com.zgjt.yqsl.annotation.AuthorityAnnotation)")
     public void dataPointCut(){}

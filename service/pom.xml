@@ -15,6 +15,9 @@
         <module>goods</module>
         <module>filesOperator</module>
         <module>alibaba</module>
+        <module>users</module>
+        <module>trade</module>
+        <module>store</module>
     </modules>
 
 </project>

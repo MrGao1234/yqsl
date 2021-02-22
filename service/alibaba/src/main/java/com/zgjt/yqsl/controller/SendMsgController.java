@@ -1,7 +1,5 @@
 package com.zgjt.yqsl.controller;
 
-import com.aliyuncs.exceptions.ClientException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zgjt.yqsl.execption.MyExecption;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.VerifyService;
@@ -14,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -43,17 +42,24 @@ public class SendMsgController {
     /*短信验证码*/
     @PostMapping("/codeSms")
     public ResponseApi sendCodeSms(@RequestParam(value = "phone") String phone){
-        System.out.println(phone);
+//        System.out.println(phone);
+//        String code = VerifyCodeUtils.getSixCode();
+//        try {
+//            if(SmsUtils.sendMessage(phone,code,accessKeyId,accessKeySecret)){
+//                redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
+//                return ResponseApi.sucess();
+//            }
+//        } catch (Exception e) {
+//            log.error("发生异常",e);
+//            throw new MyExecption(20001,"短信发送异常");
+//        }
+//        return ResponseApi.error();
+
         String code = VerifyCodeUtils.getSixCode();
-        try {
-            if(SmsUtils.sendMessage(phone,code,accessKeyId,accessKeySecret)){
-                redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
-                return ResponseApi.sucess();
-            }
-        } catch (Exception e) {
-            throw new MyExecption(20001,"短信发送异常");
-        }
-        return ResponseApi.error();
+        System.out.println(code);
+        redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
+        return ResponseApi.sucess();
+
     }
 
     /*图片验证码*/
@@ -71,4 +77,6 @@ public class SendMsgController {
             log.info("堆栈信息",e);
         }
     }
+
+
 }

@@ -13,7 +13,6 @@ public class MyExecption extends RuntimeException{
     public MyExecption(){}
 
     public MyExecption(Integer code,String msg){
-        log.error(msg);
         this.code = code;
         this.msg = msg;
     }

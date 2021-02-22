@@ -8,6 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created on 17/6/7.
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  * 备注:Demo工程编码采用UTF-8
  * 国际短信发送请勿参照此DEMO
  */
+@Slf4j
 public class SmsUtils {
 
     //产品名称:云通信短信API产品,开发者无需替换
@@ -60,6 +62,8 @@ public class SmsUtils {
     }
 
     public static boolean sendMessage(String phone,String code,String accessKeyId,String accessKeySecret) throws ClientException, JsonProcessingException {
+        log.info("accessKeyId:{}",accessKeyId);
+        log.info("accessKeySecret:{}",accessKeySecret);
         //发短信
         SendSmsResponse sendSmsResponse = sendSms(phone,code,accessKeyId,accessKeySecret);
         if(sendSmsResponse.getCode().equals("OK"))

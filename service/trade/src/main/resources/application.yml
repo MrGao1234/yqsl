@@ -1,0 +1,39 @@
+server:
+  port: 10085
+  servlet:
+    context-path: /trade
+spring:
+  profiles:
+    active: database,base
+  application:
+    name: trade
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    # 确认消息已经发送到交换机
+    publisher-confirms: true
+    # 确认消息已经发送到队列
+    publisher-returns: true
+
+# 打印sql信息
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+# 熔断器
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000

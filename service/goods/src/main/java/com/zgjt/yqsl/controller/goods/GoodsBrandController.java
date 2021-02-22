@@ -50,6 +50,8 @@ public class GoodsBrandController {
 
     @PostMapping("/selBrands")
     public ResponseApi selGoods(@RequestBody PageVo pageVo){
+
+
         QueryWrapper<GoodsBrand> wrapper = new QueryWrapper<>();
         if(pageVo.getName() != null && pageVo.getName().length() > 0){
             wrapper.like("name",pageVo.getName());

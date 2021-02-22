@@ -32,6 +32,8 @@ public class VerifyServiceImpl implements VerifyService {
         //根据 sessionId 去存储 randomText
         String uuid = UUID.randomUUID().toString().replace("-","");
         redisTemplate.opsForValue().set(uuid,randomText,10, TimeUnit.MINUTES);
+
+        response.setHeader("Access-Control-Expose-Headers","verifyCode");
         response.addHeader("verifyCode",uuid);
 
 
@@ -41,7 +43,7 @@ public class VerifyServiceImpl implements VerifyService {
     @Override
     public String drawRandomText(int width,int height,BufferedImage verifyImg) {
         Graphics2D graphics = (Graphics2D)verifyImg.getGraphics();
-        graphics.setColor(Color.WHITE);//设置画笔颜色-验证码背景色
+        graphics.setColor(new Color(206,237,247));//设置画笔颜色-验证码背景色
         graphics.fillRect(0, 0, width, height);//填充背景
         graphics.setFont(new Font("微软雅黑", Font.BOLD, 40));
         //数字和字母的组合
