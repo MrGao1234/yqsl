@@ -1,6 +1,7 @@
 package com.zgjt.yqsl.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @Data
 @TableName("goods_brand")
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value={"isDeleted","updateTime","createTime"})
 public class GoodsBrand implements Serializable {
 
     private static final long serialVersionUID = 1L;

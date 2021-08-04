@@ -7,7 +7,12 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * @author admin
+ */
 @Data
 @TableName("goods_msg")
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
@@ -24,23 +29,13 @@ public class GoodsMsg implements Serializable {
 
     private Integer typeId;
 
-    private String unit;
-
-    private String spec;
-
-    private String specUnit;
-
-    private BigDecimal price;
-
     private String avartal;
-
-    private Integer qualityDate;
-
-    private String qualityUnit;
 
     private String message;
 
     private String status;
+
+    private List<GoodsMsgKey> attributes;
 
     @TableLogic
     private Integer isDeleted;

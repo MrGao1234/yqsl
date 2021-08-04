@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgjt.yqsl.mapper.GoodsMsgKeyMapper">
+
+    <insert id="insertGoodsMsgKey">
+        insert into goods_msg_key(goods_msg_id, name)
+        values
+        <foreach collection="list" item="goodsMsgKey" separator=",">
+            (#{goodsMsgKey.goodsMsgId}, #{goodsMsgKey.name})
+        </foreach>
+    </insert>
+</mapper>

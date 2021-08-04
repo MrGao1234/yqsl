@@ -1,16 +1,17 @@
 package com.zgjt.yqsl.controller.goods;
 
-
-import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.GoodsType;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.GoodsTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * <p>
@@ -27,9 +28,8 @@ public class GoodsTypeController {
     @Autowired
     private GoodsTypeService GoodsTypeService;
 
-    @AuthorityAnnotation(value = {1})
-    @PostMapping("addGoodsType")
-    public ResponseApi addGoodsType(GoodsType g){
+    @PostMapping("/addGoodsType")
+    public ResponseApi addGoodsType(@RequestBody GoodsType g){
         if( GoodsTypeService.save(g) ){
             return ResponseApi.sucess();
         }else{
@@ -37,8 +37,7 @@ public class GoodsTypeController {
         }
     }
 
-    @AuthorityAnnotation(value = {1})
-    @PostMapping("delGoodsType")
+    @PostMapping("/delGoodsType")
     public ResponseApi delGoodsType(int id){
         if(GoodsTypeService.removeById(id)){
             return ResponseApi.sucess();
@@ -47,9 +46,8 @@ public class GoodsTypeController {
         }
     }
 
-    @AuthorityAnnotation(value = {1})
-    @PostMapping("updGoodsType")
-    public ResponseApi updGoodsType(GoodsType g){
+    @PostMapping("/updGoodsType")
+    public ResponseApi updGoodsType(@RequestBody GoodsType g){
         if(GoodsTypeService.updateById(g)){
             return ResponseApi.sucess();
         }else{
@@ -57,9 +55,15 @@ public class GoodsTypeController {
         }
     }
 
-    @GetMapping("selGoodsType")
+    @GetMapping("/selGoodsType")
     public ResponseApi selGoodsType(){
-        return ResponseApi.sucess().data("typeList",GoodsTypeService.list(null));
+        return ResponseApi.sucess().data("typeList",GoodsTypeService.goodsTypeList());
+    }
+
+    @GetMapping("test")
+    public void test() throws IOException {
+        String name = System.getProperty("os.name");
+        System.out.println(name);
     }
 
 }

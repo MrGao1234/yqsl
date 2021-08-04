@@ -18,7 +18,6 @@ public class GoodsBrandController {
     @Autowired
     private GoodsBrandService goodsBrandService;
 
-    @AuthorityAnnotation(value = {1})
     @PostMapping("/addBrand")
     public ResponseApi addGoods(@RequestBody GoodsBrand g){
         if(goodsBrandService.save(g)){
@@ -28,7 +27,6 @@ public class GoodsBrandController {
         }
     }
 
-    @AuthorityAnnotation(value = {1})
     @PostMapping("/delBrand")
     public ResponseApi delGoods(int id){
         if(goodsBrandService.removeById(id)){
@@ -38,7 +36,6 @@ public class GoodsBrandController {
         }
     }
 
-    @AuthorityAnnotation(value = {1})
     @PostMapping("/updBrand")
     public ResponseApi updGoods(@RequestBody GoodsBrand g){
         if(goodsBrandService.updateById(g)){

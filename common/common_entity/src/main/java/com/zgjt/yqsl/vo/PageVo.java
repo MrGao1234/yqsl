@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class PageVo {
     private String name;
-    private int pageNumber;
-    private int pageSize;
-    private int brandId;
-    private int typeId;
+    private Integer pageNumber;
+    private Integer pageSize;
+    private Integer brandId;
+    private Integer typeId;
 
     private String sex;
     private String duty;

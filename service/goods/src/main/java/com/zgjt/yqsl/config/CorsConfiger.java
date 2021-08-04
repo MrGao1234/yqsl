@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
-@Configuration
+//@Configuration
 public class CorsConfiger extends WebMvcConfigurationSupport {
 
     /*提前将拦截器拿出，取代注册的时候 new，这样 redisTemplate 才不会为空*/

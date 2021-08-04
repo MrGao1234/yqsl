@@ -10,4 +10,6 @@ public interface GoodsMsgService extends IService<GoodsMsg> {
 
     //查询商品信息
     IPage<GoodsMsg> findGoodsMsg(PageVo pageVo);
+
+    boolean saveGoodsMsg(GoodsMsg goodsMsg);
 }

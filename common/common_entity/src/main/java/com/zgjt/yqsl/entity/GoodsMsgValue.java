@@ -1,34 +1,23 @@
 package com.zgjt.yqsl.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * <p>
- * 
- * </p>
- *
- * @author testjava
- * @since 2020-10-12
+ * @author admin
  */
 @Data
-@JsonInclude(value= JsonInclude.Include.NON_EMPTY)
-public class GoodsType implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@TableName("goods_msg_value")
+@JsonInclude(value= JsonInclude.Include.NON_NULL)
+public class GoodsMsgValue {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
-    private String name;
-
-    private Integer parentId;
+    private Integer goodsMsgKeyId;
+    private String value;
 
     @TableLogic
     private Integer isDeleted;
@@ -39,6 +28,4 @@ public class GoodsType implements Serializable {
     @TableField(value = "create_time",fill = FieldFill.INSERT)
     private Date createTime;
 
-    @TableField(exist = false)
-    private List<GoodsType> childList;
 }

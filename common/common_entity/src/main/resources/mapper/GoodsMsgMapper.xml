@@ -7,22 +7,27 @@
         <result property="name" column="name"/>
         <result property="brandId" column="brand_id"/>
         <result property="typeId" column="type_id"/>
-        <result property="unit" column="unit"/>
-        <result property="spec" column="spec"/>
-        <result property="specUnit" column="spec_unit"/>
-        <result property="price" column="price"/>
         <result property="avartal" column="avartal"/>
         <result property="status" column="status"/>
         <result property="message" column="message"/>
-        <result property="qualityDate" column="quality_date"/>
-        <result property="qualityUnit" column="quality_unit"/>
         <collection property="goodsBrand" ofType="com.zgjt.yqsl.entity.GoodsBrand">
-            <result property="name" column="brandName"></result>
+            <result property="name" column="name"></result>
             <result property="avatar" column="avatar"></result>
             <result property="message" column="message"></result>
         </collection>
         <collection property="goodsType" ofType="com.zgjt.yqsl.entity.GoodsType">
             <result property="name" column="typeName"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="goodsAttribute" type="com.zgjt.yqsl.entity.GoodsMsgKey">
+        <id property="id" column="id"></id>
+        <result property="goodsMsgId" column="goods_msg_id"></result>
+        <result property="name" column="name"></result>
+        <collection property="valueList" ofType="com.zgjt.yqsl.entity.GoodsMsgValue">
+            <id property="id" column="valueId"></id>
+            <result property="goodsMsgKeyId" column="goods_msg_key_id"></result>
+            <result property="value" column="value"></result>
         </collection>
     </resultMap>
 
@@ -32,15 +37,9 @@
             g.NAME name,
             g.brand_id,
             g.type_id,
-            g.unit,
-            g.spec,
-            g.spec_unit,
-            g.price,
             g.avartal,
-            g.quality_date,
             g.status,
             g.message,
-            g.quality_unit,
             b.NAME brandName,
             b.avatar,
             b.message,
@@ -51,7 +50,6 @@
             JOIN goods_type t On g.type_id = t.id
         WHERE
             g.is_deleted = 0
-            AND b.is_deleted = 0
         <if test="pageVo.name != null and pageVo.name != ''">
             AND g.name like "%"#{pageVo.name}"%"
         </if>
@@ -62,6 +60,17 @@
             AND g.type_id = #{pageVo.typeId}
         </if>
         ORDER BY g.create_time DESC
+    </select>
+
+    <select id="findAttributesByGoodsId" resultMap="goodsAttribute">
+         select k.id, k.goods_msg_id, k.name,
+						v.id valueId, v.goods_msg_key_id, v.value
+				from goods_msg_key k
+				left join goods_msg_value v
+				on k.id = v.goods_msg_key_id
+				where k.is_deleted = 0
+				and v.is_deleted = 0
+				and k.goods_msg_id = #{goodsId}
     </select>
 
 

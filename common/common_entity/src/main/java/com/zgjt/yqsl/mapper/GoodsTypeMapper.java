@@ -2,6 +2,7 @@ package com.zgjt.yqsl.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zgjt.yqsl.entity.GoodsType;
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +14,9 @@ import com.zgjt.yqsl.entity.GoodsType;
  */
 public interface GoodsTypeMapper extends BaseMapper<GoodsType> {
 
+    /**
+     * 获取商品分类列表，自连接
+     * @return List<GoodsType>
+     */
+    List<GoodsType> findGoodsType();
 }
