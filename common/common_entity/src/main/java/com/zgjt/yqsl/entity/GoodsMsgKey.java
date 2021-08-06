@@ -15,8 +15,8 @@ import java.util.List;
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 public class GoodsMsgKey {
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    private String id;
     private Integer GoodsMsgId;
     private String name;
 

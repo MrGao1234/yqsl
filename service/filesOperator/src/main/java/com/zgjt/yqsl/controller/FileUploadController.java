@@ -59,7 +59,7 @@ public class FileUploadController {
 
     private String getFileName(String fileName) {
         int index = fileName.lastIndexOf(".");
-        fileName = fileName.substring(0, index) + "_" + new Date().getTime() + fileName.substring(index);
+        fileName = fileName.substring(0, index) + "_" + System.currentTimeMillis() + fileName.substring(index);
         return fileName;
     }
 
@@ -67,7 +67,9 @@ public class FileUploadController {
     public static String getUploadPath(){
         File file = new File("");
         File upload = new File(file.getAbsolutePath(), "/upload/");
-        if( !upload.exists() ) upload.mkdirs();
+        if( !upload.exists() && !upload.isDirectory() ){
+            upload.mkdirs();
+        }
         return upload.getAbsolutePath();
     }
 

@@ -3,10 +3,10 @@
 <mapper namespace="com.zgjt.yqsl.mapper.GoodsMsgKeyMapper">
 
     <insert id="insertGoodsMsgKey">
-        insert into goods_msg_key(goods_msg_id, name)
+        insert into goods_msg_key(id, goods_msg_id, name, create_time, update_time)
         values
         <foreach collection="list" item="goodsMsgKey" separator=",">
-            (#{goodsMsgKey.goodsMsgId}, #{goodsMsgKey.name})
+            (#{goodsMsgKey.id}, #{goodsMsgKey.goodsMsgId}, #{goodsMsgKey.name}, #{goodsMsgKey.createTime}, #{goodsMsgKey.updateTime})
         </foreach>
     </insert>
 </mapper>

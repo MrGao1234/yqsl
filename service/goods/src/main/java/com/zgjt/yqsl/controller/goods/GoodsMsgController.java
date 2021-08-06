@@ -21,7 +21,7 @@ public class GoodsMsgController {
     @Autowired
     private BaseUnitService baseUnitService;
 
-    @PostMapping("addGoodsMsg")
+    @PostMapping("/addGoodsMsg")
     public ResponseApi addGoodsMsg(@RequestBody GoodsMsg goodsMsg){
         if( goodsMsgService.saveGoodsMsg(goodsMsg) ){
             return ResponseApi.sucess();
@@ -30,7 +30,7 @@ public class GoodsMsgController {
         }
     }
 
-    @PostMapping("delGoodsMsg")
+    @PostMapping("/delGoodsMsg")
     public ResponseApi delGoodsMsg(int id){
         if(goodsMsgService.removeById(id)){
             return ResponseApi.sucess();
@@ -39,7 +39,7 @@ public class GoodsMsgController {
         }
     }
 
-    @PostMapping("updGoodsMsg")
+    @PostMapping("/updGoodsMsg")
     public ResponseApi updGoodsMsg(@RequestBody GoodsMsg g){
         if(goodsMsgService.updateById(g)){
             return ResponseApi.sucess();
@@ -48,16 +48,21 @@ public class GoodsMsgController {
         }
     }
 
-    @PostMapping("selGoodsMsg")
+    @PostMapping("/selGoodsMsg")
     public ResponseApi selGoodsMsg(@RequestBody PageVo pageVo){
         IPage<GoodsMsg> goodsMsgList = goodsMsgService.findGoodsMsg(pageVo);
         return ResponseApi.sucess().put(goodsMsgList);
     }
 
-    @GetMapping("selUnit")
+    @GetMapping("/selUnit")
     public ResponseApi selUnit(String type){
         QueryWrapper<BaseUnit> wrapper = new QueryWrapper<>();
         wrapper.eq("type",type);
         return ResponseApi.sucess().put(baseUnitService.list(wrapper));
+    }
+
+    @GetMapping("/selAttributesByGoodsId")
+    public ResponseApi setAttributesByGoodsId(int goodsId){
+        return ResponseApi.sucess().put( goodsMsgService.findGoodsAttributes(goodsId) );
     }
 }

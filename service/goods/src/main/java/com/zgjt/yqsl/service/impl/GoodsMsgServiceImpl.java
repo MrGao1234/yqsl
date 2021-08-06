@@ -19,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author admin
@@ -49,10 +51,18 @@ public class GoodsMsgServiceImpl extends ServiceImpl<GoodsMsgMapper,GoodsMsg> im
         IPage<GoodsMsg> page = new Page<>(pageVo.getPageNumber(),pageVo.getPageSize());
         page.setRecords(goodsMsgMapper.findGoods(pageVo,page));
 
-        //goodsMsgMapper.findAttributesByGoodsId(1);
-
         return page;
     }
+
+
+    /**
+     * 根据商品 id 查询商品属性
+     * */
+    @Override
+    public List<GoodsMsgKey> findGoodsAttributes(int goodsId) {
+        return goodsMsgMapper.findAttributesByGoodsId(goodsId);
+    }
+
 
     /**
      * 新增
@@ -61,19 +71,35 @@ public class GoodsMsgServiceImpl extends ServiceImpl<GoodsMsgMapper,GoodsMsg> im
     @Transactional(rollbackFor = Exception.class)
     public boolean saveGoodsMsg(GoodsMsg goodsMsg) {
 
+        goodsMsgMapper.insert(goodsMsg);
+        log.info("goods insert successful !");
+
         List<GoodsMsgValue> values = new ArrayList<>();
         List<GoodsMsgKey> attributeList = goodsMsg.getAttributes();
         for(GoodsMsgKey key : attributeList){
+
+            String keyId = UUID.randomUUID().toString().replace("-","");
+            key.setId(keyId);
             key.setGoodsMsgId(goodsMsg.getId());
+            Date date = new Date();
+            key.setCreateTime( date );
+            key.setUpdateTime( date );
+
+            List<GoodsMsgValue> valueList = key.getValueList();
+            for( GoodsMsgValue value : valueList ){
+                value.setId(UUID.randomUUID().toString().replace("-",""));
+                value.setGoodsMsgKeyId(keyId);
+                value.setCreateTime( date );
+                value.setUpdateTime( date );
+            }
             values.addAll( key.getValueList() );
         }
 
-        int keyNum = goodsMsgValueMapper.insertGoodsMsgValue( values );
-        log.info("insert goodsKey {} ！", keyNum);
         int valueNum = goodsMsgKeyMapper.insertGoodsMsgKey( attributeList );
         log.info("insert goodsValue {} !", valueNum);
-        goodsMsgMapper.insert(goodsMsg);
-        log.info("goods insert successful !");
+
+        int keyNum = goodsMsgValueMapper.insertGoodsMsgValue( values );
+        log.info("insert goodsKey {} ！", keyNum);
 
         return true;
     }

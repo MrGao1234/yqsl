@@ -14,9 +14,9 @@ import java.util.Date;
 @JsonInclude(value= JsonInclude.Include.NON_NULL)
 public class GoodsMsgValue {
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
-    private Integer goodsMsgKeyId;
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    private String id;
+    private String goodsMsgKeyId;
     private String value;
 
     @TableLogic

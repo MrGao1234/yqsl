@@ -35,6 +35,7 @@ public class GoodsMsg implements Serializable {
 
     private String status;
 
+    @TableField(exist = false)
     private List<GoodsMsgKey> attributes;
 
     @TableLogic
