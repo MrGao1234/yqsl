@@ -15,8 +15,7 @@ public class JasyptApplicationTests {
     @Test
     public void testPassword(){
         //加密
-        System.out.println(stringEncryptor.encrypt("LTAIxWRuPa823WZ9"));
-        System.out.println(stringEncryptor.encrypt("DQXmA9Yl7pZSF8ij8VVcnq1a4drbRI"));
+
     }
 
     @Test
