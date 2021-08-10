@@ -25,13 +25,10 @@
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt-spring-boot-starter.version}</version>
         </dependency>
-
         <!-- springboot-aop包,AOP切面注解,Aspectd等相关注解 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-
-
     </dependencies>
 </project>
