@@ -5,6 +5,8 @@ server:
 spring:
   profiles:
     active: base
+  application:
+    name: files
   servlet:
     multipart:
       max-file-size: 10MB

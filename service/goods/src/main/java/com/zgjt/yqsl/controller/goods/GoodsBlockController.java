@@ -1,6 +1,5 @@
 package com.zgjt.yqsl.controller.goods;
 
-import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.GoodsBlock;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.GoodsBlockService;
@@ -35,7 +34,6 @@ public class GoodsBlockController {
         }
     }
 
-    @AuthorityAnnotation(value = {1})
     @PostMapping("/delBlock")
     public ResponseApi delGoods(int id){
         if(goodsBlockService.removeById(id)){

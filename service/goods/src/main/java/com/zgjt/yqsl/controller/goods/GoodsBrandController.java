@@ -3,7 +3,6 @@ package com.zgjt.yqsl.controller.goods;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zgjt.yqsl.annotation.AuthorityAnnotation;
 import com.zgjt.yqsl.entity.GoodsBrand;
 import com.zgjt.yqsl.response.ResponseApi;
 import com.zgjt.yqsl.service.GoodsBrandService;
