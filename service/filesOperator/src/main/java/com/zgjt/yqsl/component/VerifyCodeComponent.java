@@ -1,11 +1,9 @@
-package com.zgjt.yqsl.service.impl;
+package com.zgjt.yqsl.component;
 
-import com.zgjt.yqsl.service.VerifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,13 +11,18 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@Service
-public class VerifyServiceImpl implements VerifyService {
+/**
+ * @author admin
+ */
+@Component
+public class VerifyCodeComponent {
 
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Override
+    /**
+     * 图片验证码
+     */
     public BufferedImage getVerifyImageCode(HttpServletResponse response) {
 
         int width=200;
@@ -34,11 +37,12 @@ public class VerifyServiceImpl implements VerifyService {
         redisTemplate.opsForValue().set(uuid,randomText,10, TimeUnit.MINUTES);
         response.addHeader("verifyCode",uuid);
 
-
         return verifyImg;
     }
 
-    @Override
+    /**
+     * 画随机文本
+     */
     public String drawRandomText(int width,int height,BufferedImage verifyImg) {
         Graphics2D graphics = (Graphics2D)verifyImg.getGraphics();
         graphics.setColor(Color.WHITE);//设置画笔颜色-验证码背景色
@@ -82,11 +86,9 @@ public class VerifyServiceImpl implements VerifyService {
         return sBuffer.toString();
     }
 
-
     /**
      * 随机取色
      */
-    @Override
     public Color getRandomColor() {
         Random ran = new Random();
         Color color = new Color(ran.nextInt(256),

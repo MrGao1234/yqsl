@@ -7,7 +7,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created on 17/6/7.
@@ -19,16 +19,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  *
  * 备注:Demo工程编码采用UTF-8
  * 国际短信发送请勿参照此DEMO
+ * @author admin
  */
-public class SmsUtils {
+@Slf4j
+public class SendMessageUtils {
 
-    //产品名称:云通信短信API产品,开发者无需替换
+    /**产品名称:云通信短信API产品,开发者无需替换*/
     static final String product = "Dysmsapi";
-    //产品域名,开发者无需替换
+    /**产品域名,开发者无需替换*/
     static final String domain = "dysmsapi.aliyuncs.com";
 
 
-    public static SendSmsResponse sendSms(String phone,String code,String accessKeyId,String accessKeySecret) throws ClientException {
+    public static SendSmsResponse sendSms(String phone, String code, String accessKeyId, String accessKeySecret) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -59,11 +61,13 @@ public class SmsUtils {
         return sendSmsResponse;
     }
 
-    public static boolean sendMessage(String phone,String code,String accessKeyId,String accessKeySecret) throws ClientException, JsonProcessingException {
+    public static boolean sendMessage(String phone,String code,String accessKeyId,String accessKeySecret) throws ClientException {
         //发短信
         SendSmsResponse sendSmsResponse = sendSms(phone,code,accessKeyId,accessKeySecret);
+        log.info("获取到的反回信息：" + sendSmsResponse.getMessage());
         if(sendSmsResponse.getCode().equals("OK"))
             return true;
         return false;
     }
+
 }

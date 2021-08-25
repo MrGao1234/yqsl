@@ -1,6 +1,6 @@
 package com.zgjt.yqsl.config;
 
-import com.zgjt.yqsl.controller.FileUploadController;
+import com.zgjt.yqsl.utils.FilesUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,11 +15,10 @@ public class Config extends WebMvcConfigurationSupport {
      * */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:resources/", "classpath:static/",
                         "classpath:public/", "classpath:META-INF/resources/")
-                .addResourceLocations("file:" + FileUploadController.getUploadPath() + "//");
+                .addResourceLocations("file:" + FilesUtil.getUploadPath(null));
     }
 
     //跨域
