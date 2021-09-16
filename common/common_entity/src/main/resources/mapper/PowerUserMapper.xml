@@ -16,65 +16,14 @@
         <association property="powerShop" column="shop_id" select="findPowerShop"/>
     </resultMap>
 
-    <select id="findStaffUser" resultMap="powerUserMap">
-        select id,
-               name,
-               sex,
-               birthday_date,
-               account,
-               avatar,
-               status,
-               id_card,
-               duty,
-               telephone
+    <select id="findPowerUserByAccount" resultType="com.zgjt.yqsl.entity.PowerUser">
+       select *
           from power_user
-          where
-          <choose>
-              <when test='pageVo.duty == "2"'>
-                  duty = 2
-              </when>
-              <when test='pageVo.duty == "3"'>
-                  duty = 3
-              </when>
-              <otherwise>
-                  (duty = 2 or duty = 3)
-              </otherwise>
-          </choose>
-
-            <choose>
-                <when test='pageVo.status == "0"'>
-                    and status = 0
-                </when>
-                <when test='pageVo.status == "1"'>
-                    and status = 1
-                </when>
-                <when test='pageVo.status == "2"'>
-                    and status = 2
-                </when>
-            </choose>
-
-            <choose>
-                <when test='pageVo.sex == "0"'>
-                    and sex = 0
-                </when>
-                <when test='pageVo.sex == "1"'>
-                    and sex = 1
-                </when>
-            </choose>
-
-            <if test="pageVo.name != null and pageVo.name != ''">
-                and name like "%"#{pageVo.name}"%"
-            </if>
-
+          where account = #{account}
           and is_deleted = 0
-          order by create_time desc
     </select>
 
-    <select id="findPowerShop" resultType="com.zgjt.yqsl.entity.PowerShop">
-        select *
-          from power_shop
-          where id = #{shop_id}
-    </select>
+
 
 
 </mapper>

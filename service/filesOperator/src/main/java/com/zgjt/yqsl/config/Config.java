@@ -20,17 +20,4 @@ public class Config extends WebMvcConfigurationSupport {
                         "classpath:public/", "classpath:META-INF/resources/")
                 .addResourceLocations("file:" + FilesUtil.getUploadPath(null));
     }
-
-    //跨域
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH")
-                .allowedOrigins("*")
-                .maxAge(3600)
-                .allowCredentials(true)
-                .allowedHeaders("*");
-        super.addCorsMappings(registry);
-    }
-
 }

@@ -56,7 +56,8 @@ public class FileUploadController {
             throw new MyExecption(20001,"上传文件失败");
         }
 
-        return ResponseApi.sucess().data("imageUrl","http://" + InetAddress.getLocalHost().getHostAddress() + ":" + ip.getPort() + File.separator + contentConfig.getContentPath() + File.separator + directory + File.separator + fileName);
+        System.out.println( File.separator );
+        return ResponseApi.sucess().data("imageUrl","http://" + InetAddress.getLocalHost().getHostAddress() + ":" + ip.getPort() + contentConfig.getContentPath() + "/" + directory + "/" + fileName);
     }
 
 

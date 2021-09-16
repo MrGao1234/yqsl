@@ -1,4 +1,4 @@
-package com.zgjt.yqsl.controller.goods;
+package com.zgjt.yqsl.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

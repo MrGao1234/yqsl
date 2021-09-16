@@ -6,6 +6,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -95,7 +96,7 @@ public class ImageCodeUtil {
      * @return        返回二维码图片
      * @throws Exception
      */
-    private static BufferedImage createImage(String content, String imgPath, boolean needCompress) throws Exception {
+    private static BufferedImage createImage(String content, MultipartFile imgPath, boolean needCompress) throws Exception {
         ConcurrentHashMap hints = new ConcurrentHashMap();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         hints.put(EncodeHintType.CHARACTER_SET, CHARSET);
@@ -121,17 +122,17 @@ public class ImageCodeUtil {
     /**
      * 在生成的二维码中插入图片
      * @param source
-     * @param imgPath
+     * @param file
      * @param needCompress
      * @throws Exception
      */
-    private static void insertImage(BufferedImage source, String imgPath, boolean needCompress) throws Exception {
-        File file = new File(imgPath);
-        if (!file.exists()) {
-            System.err.println("" + imgPath + "   该文件不存在！");
+    private static void insertImage(BufferedImage source, MultipartFile file, boolean needCompress) throws Exception {
+        if( file == null ){
+            System.err.println("logo 文件不存在！");
             return;
         }
-        Image src = ImageIO.read(new File(imgPath));
+
+        Image src = ImageIO.read(file.getInputStream());
         int width = src.getWidth(null);
         int height = src.getHeight(null);
         // 压缩LOGO
@@ -168,7 +169,7 @@ public class ImageCodeUtil {
      * @param destPath   文件保存目录
      * @param needCompress 是否压缩
      */
-    public static String encode(String content, String imgPath, String destPath, boolean needCompress) throws Exception {
+    public static String encode(String content, MultipartFile imgPath, String destPath, boolean needCompress) throws Exception {
         BufferedImage image = ImageCodeUtil.createImage( content, imgPath, needCompress );
         mkdirs(destPath);
         //生成随机文件名
@@ -183,7 +184,7 @@ public class ImageCodeUtil {
      * 生成二维码并保存到磁盘目录
      * 2016年12月13日  上午9:56:42
      */
-    public static String encode(String content, String imgPath, String destPath) throws Exception {
+    public static String encode(String content, MultipartFile imgPath, String destPath) throws Exception {
         return ImageCodeUtil.encode(content, imgPath, destPath, false);
     }
 
@@ -212,7 +213,7 @@ public class ImageCodeUtil {
     /**
      * 生成二维码返回前端图片流
      * */
-    public static void encode(String content, String imgPath, OutputStream output, boolean needCompress)
+    public static void encode(String content, MultipartFile imgPath, OutputStream output, boolean needCompress)
             throws Exception {
         BufferedImage image = ImageCodeUtil.createImage(content, imgPath, needCompress);
         ImageIO.write(image, FORMAT_NAME, output);

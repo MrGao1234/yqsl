@@ -1,4 +1,4 @@
-package com.zgjt.yqsl.controller.goods;
+package com.zgjt.yqsl.controller;
 
 import com.zgjt.yqsl.entity.GoodsType;
 import com.zgjt.yqsl.response.ResponseApi;

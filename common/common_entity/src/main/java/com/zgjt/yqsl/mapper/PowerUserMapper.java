@@ -9,13 +9,11 @@ import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
+/**
+ * @author admin
+ */
 public interface PowerUserMapper extends BaseMapper<PowerUser> {
 
-    @Update("update power_user set shop_id = #{shopId} where id = #{userId}")
-    int updateShopDirector(String shopId, int userId);
-
-    //查询员工和店长
-    List<PowerUser> findStaffUser(@Param("pageVo") PageVo pageVo, IPage<PowerUser> page);
-
+    PowerUser findPowerUserByAccount(String account);
 
 }

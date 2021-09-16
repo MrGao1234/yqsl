@@ -1,0 +1,12 @@
+server:
+  port: 10083
+  servlet:
+    context-path: /author
+spring:
+  profiles:
+    active: database,base,util
+# 打印sql信息
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml

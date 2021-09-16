@@ -16,35 +16,5 @@ import java.text.DecimalFormat;
 @Service
 public class PowerUserServiceImpl extends ServiceImpl<PowerUserMapper, PowerUser> implements PowerUserService {
 
-    @Autowired
-    private PowerUserMapper powerUserMapper;
 
-    @Override
-    public int updateDirector(String shopId, int userId) {
-        return powerUserMapper.updateShopDirector(shopId,userId);
-    }
-
-    @Override
-    public IPage<PowerUser> findStaffList(PageVo pageVo) {
-
-        IPage<PowerUser> page = new Page<>(pageVo.getPageNumber(),pageVo.getPageSize());
-
-        page.setRecords(powerUserMapper.findStaffUser(pageVo,page));
-
-        return page;
-
-    }
-
-    @Override
-    public String produceAccount(PowerUser powerUser) {
-        int count = powerUserMapper.selectCount(null) + 1;
-        String account = new DecimalFormat("0000").format(count);
-
-        if(powerUser.getDuty() == 2){
-            account = "D" + account;
-        }else{
-            account = "Y" + account;
-        }
-        return account;
-    }
 }
